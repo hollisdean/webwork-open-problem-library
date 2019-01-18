@@ -1,0 +1,111 @@
+##BMCC
+##MAT206
+##circle
+
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl",
+"scaffold.pl",
+"PGML.pl"
+);
+
+
+TEXT(beginproblem());
+
+$video = MODES(
+HTML=> 
+'<iframe width="560" height="315" src="https://www.youtube.com/embed/VvuuRpJbbHE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>', 
+TeX =>
+"An embedded YouTube video."
+);
+
+
+Scaffold::Begin(
+      can_open => "when_previous_correct", 
+      is_open  => "always" ,
+      instructor_can_open => "always", 
+      after_AnswerDate_can_open => "always", 
+      hardcopy_is_open  => "always",
+    );
+ 
+Context ("Numeric");
+
+$c=random (4,10,2);
+$a=$c/2;
+$b=-$a**2;
+$r=sqrt(1-$b);
+
+Context()->variables->are(A=>"Real", B=>"Real", C=>"Real");
+
+$h="-A/2";
+$k="-B/2";
+$r2="sqrt((A**2+B**2)/4-C)";
+
+##################################################
+Section::Begin("Part 1");
+
+
+BEGIN_PGML
+Complete square [`x^2-[$c]x`] and express it as [`(x-A)^2+B`].
+
+A=[______]{$a}
+B=[______]{$b}
+
+
+END_PGML
+Section::End();
+##################################################
+
+Section::Begin("Part 2");
+BEGIN_PGML
+
+Find center [`(h,k)`] and radius [`r`] of the circle [`x^2+y^2-[$c]x+2y=0`] by completing the square in [`x`] and [`y`].
+
+[`h`]=[______]{$a}
+[`k`]=[______]{-1}
+[`r`]=[______]{$r}
+
+END_PGML
+Section::End();
+
+##################################################
+Section::Begin("Part 3");
+BEGIN_PGML
+Now we are going to repeat part 2, but with parameters instead of numbers.
+Find center [`(h,k)`] for [`x^2+y^2+Ax+By+C=0`]. Your answers should be in terms of [`A, B`] and [`C`] (don't forget to use capital letters). 
+
+[`h`]=[_________]{$h}
+[`k`]=[_________]{$k}
+
+Try to find [`r`] as well on your own.
+
+END_PGML 
+Section::End();
+
+
+Scaffold::End();
+
+
+BEGIN_TEXT
+${BCENTER}
+For help with completing square watch the video below
+$BR
+
+$video
+$BR
+If the video does not work, 
+\{ htmlLink("https://www.youtube.com/embed/VvuuRpJbbHE",
+"click here to go to YouTube directly.") \}
+${ECENTER}
+END_TEXT
+
+
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.
